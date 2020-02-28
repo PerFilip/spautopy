@@ -10,14 +10,16 @@ def main():
 
     if token:
         sp = spotipy.Spotify(auth=token)
+        if len(sys.argv)<=1:
+            return 0
         if sys.argv[1]=="-add":
             add_current_track(sp)
-        elif sys.argv[1]=="-remove_liked":
+        elif sys.argv[1]=="-clean":
             limbo_liked = find_liked_in_limbo(sp)
             remove_from_limbo(sp, limbo_liked)
 
         else:
-            print("\""+sys.argv[1] + "\" is not a valid option.\n" + "Try one of these instead: -add -remove_liked")
+	    print("\""+sys.argv[1] + "\" is not a valid option.\n" + "Try one of these instead: -add -clean")
         
 # Adds currently playing track to Limbo (my choosen playlist)
 def add_current_track(sp):
@@ -32,6 +34,7 @@ def add_current_track(sp):
 
 def remove_from_limbo(sp, tracks):
     sp.user_playlist_remove_all_occurrences_of_tracks(user=username, playlist_id=playlist, tracks=tracks)
+    print("Liked tracks removed from Limbo.")
 
 def find_liked_in_limbo(sp):
     limbo_liked_tracks = []
