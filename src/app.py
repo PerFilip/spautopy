@@ -19,7 +19,7 @@ def main():
             remove_from_limbo(sp, limbo_liked)
 
         else:
-	    print("\""+sys.argv[1] + "\" is not a valid option.\n" + "Try one of these instead: -add -clean")
+	        print("\""+sys.argv[1] + "\" is not a valid option.\n" + "Try one of these instead: -add -clean")
         
 # Adds currently playing track to Limbo (my choosen playlist)
 def add_current_track(sp):
